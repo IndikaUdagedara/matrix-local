@@ -1,0 +1,25 @@
+matrix:
+  domain: 'synapse:8008'
+
+key:
+  path: '/var/ma1sd/sign.key'
+
+storage:
+  provider:
+    sqlite:
+      database: '/var/ma1sd/ma1sd.db'
+
+
+dns:
+  overwrite:
+    homeserver:
+      client:
+        - name: 'localhost'
+          value: 'http://synapse:8008'
+
+
+
+logging:
+  root: error     # default level for all loggers (apps and thirdparty libraries)
+  app: info       # log level only for the ma1sd
+  requests: true # log request and response

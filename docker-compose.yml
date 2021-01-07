@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  proxy:
+    image: nginx
+    volumes:
+     - ./nginx1/www:/usr/share/nginx/html
+     - ./nginx1/conf:/etc/nginx/conf.d
+    ports:
+     - "8080:80"
+    environment:
+     - NGINX_PORT=80
+
+  web:
+    image: nginx
+    volumes:
+     - ./nginx2/www:/usr/share/nginx/html
+    ports:
+     - "8081:80"
+    environment:
+     - NGINX_PORT=80
+
+  synapse:
+    build:
+      context: .
+      dockerfile: Dockerfile.synapse
+    volumes:
+      - ./synapse:/data
+    ports:
+    - 8008:8008
+
+  ma1sd:
+    image: ma1uta/ma1sd
+    volumes:
+      - ./ma1sd/var:/var/ma1sd
+      - ./ma1sd/etc:/etc/ma1sd
+    ports:
+    - 8090:8090
+    environment:
+      - MATRIX_DOMAIN="synapse:8008"

@@ -1,0 +1,6 @@
+FROM matrixdotorg/synapse
+
+
+RUN apt-get update
+RUN apt-get install -y git
+RUN pip install git+https://github.com/ma1uta/matrix-synapse-rest-password-provider 

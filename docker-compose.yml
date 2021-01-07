@@ -4,8 +4,8 @@ services:
   proxy:
     image: nginx
     volumes:
-     - ./nginx1/www:/usr/share/nginx/html
-     - ./nginx1/conf:/etc/nginx/conf.d
+     - ./proxy/www:/usr/share/nginx/html
+     - ./proxy/conf:/etc/nginx/conf.d
     ports:
      - "8080:80"
     environment:
@@ -14,7 +14,7 @@ services:
   web:
     image: nginx
     volumes:
-     - ./nginx2/www:/usr/share/nginx/html
+     - ./web/www:/usr/share/nginx/html
     ports:
      - "8081:80"
     environment:
